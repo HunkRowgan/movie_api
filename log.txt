@@ -1,37 +1,11 @@
-const http = require('http'),
-    fs = require('fs'),
-    url = require('url');
-
-    http.createServer((request, response) => {
-        let addr = request.url,
-        q = new URL(addr, 'http://' + request.headers.host),
-            filePath = '';
-
-            fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
-                if (err) {
-                    console.log(err);
-                    }
-                    else {
-                        console.log('added to log.');
-                    }
-                    });
-
-                    if (q.pathname.includes('documentation')) {
-                        filePath = (__dirname + '/documentation.html');
-                    }
-                    else {
-                        filePath = 'index.html';
-                    }
-
-                    fs.readFile(filePath, (err, data) => {
-                        if (err) {
-                            throw err;
-                        }
-                        
-                        response.writeHead(200, { 'Content-Type' : 'text/html' });
-                        response.write(data);
-                        response.end();
-                    });
-                    
-    }).listen(8080);
-    console.log('My test server is running on Port 8080.');
+::1 - - [28/Oct/2023:21:49:57 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:49:57 +0000] "GET /server.js HTTP/1.1" 404 148 "http://localhost:8080/documentation.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:00 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:04 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:22 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:22 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:23 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:26 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:27 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:35 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+::1 - - [28/Oct/2023:21:50:38 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
