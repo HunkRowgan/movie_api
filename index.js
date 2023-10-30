@@ -115,7 +115,7 @@ app.delete('/users/:id', (req, res) => {
   let user = users.find( user => user.id == id);
 
   if (user) {
-    users = user.filter( user  => user.id != id);
+    //users = user.filter( user  => user.id != id); // code doesn't work
     res.status(200).send(`User ${id} has been deleted`);
     }
     else {
@@ -187,7 +187,7 @@ app.get('/users', (req, res) => {
 
 // Get: read info from movies array when searched by title
 app.get('/movies/:title', (req, res) => {                  
-  //const title = req.params.title;
+  //const title = req.params.title; 
   const {title} = req.params; // this line of code is equal to the one above
   const movie = movies.find(movie => movie.Title.toLowerCase() === title.toLowerCase()); // applies find method to movies array, takes funct as arg. => when true, do sth -> when movieTitle = title, send to const movie var
 
@@ -206,7 +206,8 @@ app.get('/movies/genre/:genreName', (req, res) => {
   const genre = movies.find(genre => movie.Genre.name.toLowerCase() === genreName.toLowerCase()).Genre; 
 
   if (genre) {
-    res.status(200).json(genre); //not a return function, add return before res.status for return function
+    res.status(200).json(genre); //not a return function, add return before res.status for return function // code doesn't work
+    res.status(200).send('genre info')
   }
   else {
     res.status(400).send('No such movie')
