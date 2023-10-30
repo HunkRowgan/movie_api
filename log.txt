@@ -188,3 +188,5 @@
 ::1 - - [30/Oct/2023:20:54:52 +0000] "GET /movies/genre HTTP/1.1" 400 13 "-" "PostmanRuntime/7.34.0"
 ::1 - - [30/Oct/2023:20:54:58 +0000] "GET /movies/genre/thriller HTTP/1.1" 500 16 "-" "PostmanRuntime/7.34.0"
 ::1 - - [30/Oct/2023:20:55:58 +0000] "GET /movies/genre/thriller HTTP/1.1" 500 16 "-" "PostmanRuntime/7.34.0"
+::1 - - [30/Oct/2023:20:58:27 +0000] "GET /movies/genre/thriller HTTP/1.1" 200 10 "-" "PostmanRuntime/7.34.0"
+::1 - - [30/Oct/2023:21:00:50 +0000] "GET /movies/directors/darren%20aronofsky HTTP/1.1" 200 13 "-" "PostmanRuntime/7.34.0"

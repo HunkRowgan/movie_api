@@ -201,7 +201,7 @@ app.get('/movies/:title', (req, res) => {
 
 // Get: read info about genre when searched by genre
 app.get('/movies/genre/:genreName', (req, res) => {                  
-  //const title = req.params.title;
+  /*
   const {genreName} = req.params; // this line of code is equal to the one above
   const genre = movies.find(genre => movie.Genre.name.toLowerCase() === genreName.toLowerCase()).Genre; 
 
@@ -211,12 +211,13 @@ app.get('/movies/genre/:genreName', (req, res) => {
   }
   else {
     res.status(400).send('No such movie')
-  }
+  }*/
+  res.status(200).send('genre info')
 });
 
 // Get: read info from movies array when searched by director
 app.get('/movies/directors/:directorName', (req, res) => {                  
-  //const title = req.params.title;
+  /*
   const {directorName} = req.params; // this line of code is equal to the one above
   const director = movies.find(genre => movie.Director.name.toLowerCase() === directorName.toLowerCase()).director; 
 
@@ -225,7 +226,8 @@ app.get('/movies/directors/:directorName', (req, res) => {
   }
   else {
     res.status(400).send('No such director')
-  }
+  }*/
+  res.status(200).send('director info')
 });
 
 
