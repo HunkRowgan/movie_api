@@ -56,19 +56,29 @@
                     <td>A JSON object holding data about a single movie, containing description, genre, director, image
                         URL, whether it’s featured or not. Example:
                         <code>
-                    {"title": "Split",
-                    "description": "The film follows a man with dissociative identity disorder who kidnaps...",
-                    "genre": {
-                        "name": "thriller",
-                        "description": "This film is a ..."
-                    },
-                    "director": {
-                        "name": "M. Night Shyamalan",
-                        "bio": "Shyamalan was born in Mahé, India...",
-                        "birth": 1970
-                    },
-                    "imageURL": "https://www.google.com...",
-                    "featured": false}
+                            {
+                                _id: ObjectId("654ac25f13dbddcc01fee494"),
+                                Title: 'The Lord of the Rings: The Fellowship of the Ring',
+                                Description: "A young hobbit named Frodo Baggins is entrusted with a powerful ring and sets out on a quest to destroy it to prevent the dark lord Sauron from conquering the world. Samuel Gamgee follows him around like a dog, just like the actor follows his own dog 'fag-ash'",
+                                Genre: {
+                                  Name: 'Fantasy',
+                                  Description: 'Fantasy films often feature magical elements, mythical creatures, and imaginary worlds.'
+                                },
+                                Director: {
+                                  Name: 'Peter Jackson',
+                                  Bio: 'Peter Jackson is a New Zealand film director, producer, and screenwriter. He was born in 1961.',
+                                  Birth: '1961',
+                                  Death: null
+                                },
+                                ImagePath: 'fellowshipofthering.png',
+                                Featured: true,
+                                ReleaseYear: 2001,
+                                Actors: [
+                                  'Elijah Wood',
+                                  'Ian McKellen',
+                                  'Viggo Mortensen',
+                                  "Alex 'Home' Mansfield"
+                                ]}
                 </code>
                     </td>
                 </tr>
@@ -79,10 +89,10 @@
                     <td>none</td>
                     <td>A JSON object holding data about a genre of each movie. Example:
                         <code>
-                          "genre":  {  
-                        "name": "drama",
-                        "description": "On top of all of that, the movie is a..."
-                        }
+                            Genre: {
+                                Name: 'Action',
+                                Description: 'Action films typically involve intense physical and dynamic activity, including violence and combat.'
+                              }
                     </code>
                     </td>
                 </tr>
@@ -93,11 +103,12 @@
                     <td>none</td>
                     <td>A JSON object holding data about a director of each movie. Example:
                         <code>
-                          "director":  {  
-                            "name": "Luc Besson",
-                            "bio": "Besson was born in Paris...",
-                            "birth": 1959"
-                        }
+                            Director: {
+                                Name: 'Joss Whedon',
+                                Bio: 'Joss Whedon is an American filmmaker, writer, and director. He was born in 1964.',
+                                Birth: '1964',
+                                Death: null
+                              }
                     </code>
                     </td>
                 </tr>
@@ -108,19 +119,28 @@
                     <td>A JSON object holding data about a user to add, structured like:
                         <code>
                             {
-                                "name": "Rita",
-                                "favoriteMovies": []
-                            }
+                                _id: ObjectId("654e6fde1db26fd2740745cc"),
+                                Username: 'movie_maven',
+                                Password: 'maven_password',
+                                Email: 'movie.maven@example.com',
+                                Birthday: '1995-04-25',
+                                Bio: 'Dedicated to discovering hidden cinematic gems. My weekends are spent exploring film history and diving into the rich world of international cinema.',
+                                FavoriteMovies: [ ObjectId("654ac25f13dbddcc01fee490") ]
+                              }
                         </code>
                     </td>
                     <td>A JSON object holding data about a user that was added, inluding an ID:
 
                         <code>
                             {
-                               "name": "Rita",
-                               "favoriteMovies": [],
-                               "id": "54629442-cdea-4dbe-8f5a-2a3fa3fc9325"
-                             }
+                                _id: ObjectId("654e6fde1db26fd2740745cc"),
+                                Username: 'movie_maven',
+                                Password: 'maven_password',
+                                Email: 'movie.maven@example.com',
+                                Birthday: '1995-04-25',
+                                Bio: 'Dedicated to discovering hidden cinematic gems. My weekends are spent exploring film history and diving into the rich world of international cinema.',
+                                FavoriteMovies: [ ObjectId("654ac25f13dbddcc01fee490") ]
+                              }
                     </code>
                     </td>
                 </tr>
