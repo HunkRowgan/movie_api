@@ -1,0 +1,5 @@
+mongoimport --uri mongodb+srv://myflixdbadmin:cirdan12@myflixdb.t4guarf.mongodb.net/myflixDB --collection users --type json --file "C:\Users\Rowan\Desktop\Career Foundry\Introduction to Server-Side\movie_api\exports\users.json"
+
+mongoexport -d cfDB -c users -o users.json
+
+connection_uri: mongodb+srv://myflixdbadmin:cirdan12@myflixdb.t4guarf.mongodb.net/myflixDB?retryWrites=true&w=majority
