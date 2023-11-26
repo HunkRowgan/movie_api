@@ -14,8 +14,8 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-//mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true }); //http://localhost:8080/
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true }); // https://hunkrowganmovieapi.onrender.com/
 
   // log to log.txt
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
@@ -25,7 +25,10 @@ app.use(morgan('common'));
 // express.static
 app.use(express.static('public'));
 
+//Allow accept URL encoded data
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+//app.use(express.urlencoded({extended:true})); alternative method
 
 //include CORS
 const cors = require('cors');
@@ -59,7 +62,7 @@ app.post('/users',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Bio', 'Bio contains non alphanumeric characters - not allowed.').isAlphanumeric()
+    check('Bio', 'Bio contains non alphanumeric characters - not allowed.').isString() // validate that is string (i.e. allows spaces)
   ], async (req, res) => {
 
   // check the validation object for errors
@@ -145,7 +148,7 @@ async (req, res) => {
   await Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: Users.hashPassword(req.body.Password),
       Email: req.body.Email,
       Birthday: req.body.Birthday,
       Bio: req.body.Bio, //added
@@ -181,8 +184,8 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 
 // Delete: allow user to remove movie
 app.delete("/users/:name/movies/:movieID", passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndUpdate({Name: req.params.Name}, 
-    {$pull: {favoriteMovies: req.params.MovieID}},
+  Users.findOneAndUpdate({ Username: req.params.Username }, 
+    {$pull: { FavoriteMovies: req.params.MovieID }},
     {new: true}).then((user) => {
       res.status(201).json(user)
     }).catch((err) => {
@@ -192,7 +195,7 @@ app.delete("/users/:name/movies/:movieID", passport.authenticate('jwt', { sessio
 });
 
 // GET requests
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to my movie database!');
 });
 
