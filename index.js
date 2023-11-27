@@ -37,7 +37,8 @@ let allowedOrigins = ["*"]; // "*" all domains allowed
 //require express-validator
 const { check, validationResult} = require('express-validator');
 
-app.use(cors({
+//restrict which origins can access api to allowed list
+/*app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
@@ -46,7 +47,10 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+}));*/
+
+//allow all origins to access api
+app.use(cors());
 
 let auth = require('./auth')(app); // import auth.js into project
 const passport = require('passport'); // require passport module
