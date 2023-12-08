@@ -5,6 +5,10 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   uuid = require('uuid');
 
+  //include CORS
+const cors = require('cors');
+let allowedOrigins = ["*"]; // "*" all domains allowed
+
   const app = express();
 
 const mongoose = require('mongoose');
@@ -30,9 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 //app.use(express.urlencoded({extended:true})); alternative method
 
-//include CORS
-const cors = require('cors');
-let allowedOrigins = ["*"]; // "*" all domains allowed
+
 
 //require express-validator
 const { check, validationResult} = require('express-validator');
