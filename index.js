@@ -33,22 +33,24 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //include CORS
 
-let allowedOrigins = ["*"]; // "*" all domains allowed
+const allowedOrigins = ['http://localhost:1234', '*']; // "*" all domains allowed
 
 //require express-validator
 const { check, validationResult} = require('express-validator');
 
 //restrict which origins can access api to allowed list
-/*app.use(cors({
+app.use(cors({
   origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = "The CORS policy for this application doesn't allow access from origin " + origin;
-      return callback(new Error(message ), false);
+    // Check if the origin is in the allowed list or if it is undefined (allowing all origins)
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
-    return callback(null, true);
-  }
-}));*/
+
+    let message = "The CORS policy for this application doesn't allow access from origin " + origin;
+    return callback(new Error(message), false);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
+}));
 
 //allow all origins to access api
 app.use(cors());
