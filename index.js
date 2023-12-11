@@ -53,7 +53,7 @@ app.use(cors({
 }));
 
 //allow all origins to access api
-app.use(cors());
+//app.use(cors());
 
 let auth = require('./auth')(app); // import auth.js into project
 const passport = require('passport'); // require passport module
