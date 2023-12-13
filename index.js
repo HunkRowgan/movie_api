@@ -130,10 +130,10 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 // check user name is > 5 letters and is alphanumeric and is not empty
 [
   check('Username', 'Username is required').optional().isLength({ min: 5 }),
-  check('Username', 'Username contains non-alphanumeric characters - not allowed.').optional().isAlphanumeric(),
-  check('Password', 'Password contains non-alphanumeric characters - not allowed.').optional().isAlphanumeric(),
+  check('Username', 'Username contains non-alphanumeric characters - not allowed.').optional().isString(),
+  check('Password', 'Password contains non-alphanumeric characters - not allowed.').optional().isString(),
   check('Email', 'Email does not appear to be valid').optional().isEmail(),
-  check('Bio', 'Bio contains non-alphanumeric characters - not allowed.').optional().isAlphanumeric()
+  check('Bio', 'Bio contains non-alphanumeric characters - not allowed.').optional().isString()
 ],
 
 
